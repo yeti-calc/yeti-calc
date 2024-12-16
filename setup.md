@@ -1,5 +1,6 @@
 # yeti-calc
 Making finances easier for everyone 
+testing in test branch
 
 # Set Up Configuration
 - [x] create package.json `npm init -y`
