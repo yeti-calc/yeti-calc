@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const htmlplugin = require('html-webpack-plugin');
+
 const path = require('path');
 
 /*We are basically telling webpack to take index.js from entry. Then check for all file extensions in resolve.
@@ -14,7 +14,7 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new htmlplugin({
+    new HtmlWebpackPlugin({
       template: './frontend/src/index.html',
     }),
   ],
