@@ -12,4 +12,30 @@ router.get('/', async (req, res) => {
   res.status(200).json({ hi: 'h1' });
 });
 
+// put try catch
+// save id in a state 
+// is a string
+router.get('/user', async (req, res) => {
+    const person = req.body.name
+
+    console.log(req.body.name);
+
+    const newpeopleId = `SELECT MAX(id) FROM people`;
+  
+    const peopleId = await db.query(newpeopleId);
+
+    console.log(peopleId.rows[0].max)
+    const id = Number(peopleId.rows[0].max) + 1
+
+    const INSERTpeople = `INSERT into people
+                        values ($1, $2)`
+    const array = [id, person];
+
+    const insertpeople = await db.query(INSERTpeople, array);
+
+  
+    res.status(200).json({ hi: 'h1' });
+  });
+
+
 module.exports = router;
