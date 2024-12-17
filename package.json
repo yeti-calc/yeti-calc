@@ -4,7 +4,10 @@
   "description": "Making finances easier for everyone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --open",
+    "build": "webpack"
+
   },
   "repository": {
     "type": "git",
@@ -25,12 +28,15 @@
     "@babel/preset-react": "^7.26.3",
     "@babel/runtime": "^7.26.0",
     "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^28.9.0",
     "html-webpack-plugin": "^5.6.3",
     "path": "^0.12.7",
+    "style-loader": "^4.0.0",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
