@@ -12,8 +12,8 @@ const App = () => {
       <div>
         <input
           type='number'
-          name='principle'
-          placeholder='Principle Amt'
+          name='loanAmt'
+          placeholder='Loan Amount'
         ></input>
       </div>
       <br></br>
@@ -27,7 +27,7 @@ const App = () => {
       </div>
       <br></br>
       <div>
-        <input type='number' name='loanAmt' placeholder='Loan Amt'></input>
+        <input type='number' name='interestRate' placeholder='Interest Rate'></input>
       </div>
       <br></br>
       <div>
