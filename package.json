@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --open",
     "build": "webpack"
-
   },
   "repository": {
     "type": "git",
@@ -40,9 +39,11 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
     "express": "^4.21.2",
     "postgres": "^3.4.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0"
   }
 }
