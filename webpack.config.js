@@ -6,7 +6,7 @@ const path = require('path');
 After that apply all the rules in module.rules and produce the output and place it in main.js in the public folder.*/
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './frontend/src/index.js',
   output: {
     filename: 'bundle.js',
