@@ -30,16 +30,16 @@ function calaculateMortgagePayments(
     });
   }
 
-  console.log(`Loan Amount: $${loanAmount}`);
-  console.log(`Interest Rate: ${annualInterestRate}%`);
-  console.log(`Loan Term: ${loanTermYears} years`);
-  console.log(`Monthly Payment(PI): $${monthlyPayment.toFixed(2)}`);
-  console.log(remainingBalance.toFixed(2));
+  // console.log(`Loan Amount: $${loanAmount}`);
+  // console.log(`Interest Rate: ${annualInterestRate}%`);
+  // console.log(`Loan Term: ${loanTermYears} years`);
+  // console.log(`Monthly Payment(PI): $${monthlyPayment.toFixed(2)}`);
+  // console.log(remainingBalance.toFixed(2));
 
   return amortization;
 }
 
-//const array = calaculateMortgagePayments(300000, 4, 30);
-//console.log(array)
+const array = calaculateMortgagePayments(300000, 4, 30);
+console.log(array)
 
 export default calaculateMortgagePayments;
