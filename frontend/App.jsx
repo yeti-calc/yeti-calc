@@ -11,10 +11,31 @@ const App = () => {
     console.log(login);
   };
 
-  const newUserEntry = () => {
+  const newUserEntry =  async () => {
+    // users input username
     const username = document.querySelector('#username').value;
+
+    // user input password
     const password = document.querySelector('#password').value;
     console.log(username, password);
+
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+
+      const promise = await fetch('/api/saveuser', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: myHeaders
+      });
+      const data = await response.json();
+      console.log('data returned: ', data);
+    } catch (error) {
+      console.log('Error in handleSubmit function in the App.jsx', error);
+    }
+
+
+
   };
 
   if (!login) {
