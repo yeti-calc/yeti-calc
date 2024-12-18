@@ -4,7 +4,7 @@ import {
     saveCalc,
     updateCalc,
     deleteCalc
-} from './mortgageSlice';
+} from './MortgageSlice';
 // import { useDispatch } from 'react-redux';
 
 export const handleInputChange = (dispatch) => (e) => {
