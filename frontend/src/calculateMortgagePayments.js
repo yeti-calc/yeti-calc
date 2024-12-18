@@ -1,6 +1,6 @@
 // import React from 'react';
 
-function calaculateMortgagePayments(
+function calculateMortgagePayments(
   loanAmount,
   annualInterestRate,
   loanTermYears
@@ -39,7 +39,7 @@ function calaculateMortgagePayments(
   return amortization;
 }
 
-const array = calaculateMortgagePayments(300000, 4, 30);
+const array = calculateMortgagePayments(300000, 4, 30);
 console.log(array)
 
-export default calaculateMortgagePayments;
+export default calculateMortgagePayments;

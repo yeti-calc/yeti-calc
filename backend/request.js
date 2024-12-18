@@ -1,4 +1,4 @@
-import calaculateMortgagePayments from '../frontend/src/calaculateMortgagePayments';
+import calculateMortgagePayments from '../frontend/src/calculateMortgagePayments';
 
 const handleSubmit = async (e) => {
     // get the user's values
@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
     }
 
     // invoke the formula
-    let array = calaculateMortgagePayments(loan_amount, interest, loan_term);
+    let array = calculateMortgagePayments(loan_amount, interest, loan_term);
     console.log('amortization: ', array);
 
     return;
