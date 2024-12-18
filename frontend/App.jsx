@@ -1,17 +1,21 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import handleSubmit from '../backend/request';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleInputChange, handleCalcSubmit } from './src/mortgageDispatches';
 
 const App = () => {
+  const dispatch = useDispatch();
+  //const counter = useSelector(state => state.counter);
+  const { mortgageInputs } = useSelector(state => state.mortgage)
 
   return (
     <main>
       <h1>Yeti Crab Mortgage Calculator</h1>
       <div>
         <input
-          id='loanAmmount'
+          id='loanAmt'
           type='number'
-          name='loanAmt'
+          name='loanAmount'
           placeholder='Loan Amount'
         ></input>
       </div>
@@ -67,7 +71,7 @@ const App = () => {
 // import { Provider } from "react-redux" //* allows us to connect redux store to our React App, works w/ redux context API, allows us to use store in any React component
 // import { store } from "./state/store.ts" //*
 
-// ReactDOM.createRoot(document.getElementById("root")!).render(
+// ReactDOM.createRoot(document.getElementById("root")).render(
 //     <Provider store={store}>
 //         <App />
 //     </Provider>

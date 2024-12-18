@@ -4,8 +4,8 @@ import {
     saveCalc,
     updateCalc,
     deleteCalc
-} from './src/mortgageSlice';
-import { useDispatch } from 'react-redux';
+} from './mortgageSlice';
+// import { useDispatch } from 'react-redux';
 
 export const handleInputChange = (dispatch) => (e) => {
     const { name, value } = e.target;
@@ -14,7 +14,7 @@ export const handleInputChange = (dispatch) => (e) => {
     }));
 };
 
-export const calcSubmit = (dispatch) => (mortgageInputs) => {
+export const handleCalcSubmit = (dispatch) => (mortgageInputs) => {
     const { loanAmount, loanTerm, interestRate } = mortgageInputs;
 
     const amortizationTable = calculateMortgagePayments(
@@ -24,11 +24,21 @@ export const calcSubmit = (dispatch) => (mortgageInputs) => {
     );
 
     dispatch(saveCalc({
-        amortizationTable
+        amortizationTable,
+        date: new Date().toISOString()
     }));
 };
 
+export const handleUpdates = (dispatch) => (id, updates) => {
+    dispatch(updateCalc({
+        id,
+        updates
+    }));
+};
 
+export const handleDelete = (dispatch) => (id) => {
+    dispatch(deleteCalc(id));
+};
 
 
 // document
