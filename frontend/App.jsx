@@ -1,16 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-
-const handleSubmit = (e) =>{
-  
-}
+import handleSubmit from '../backend/request';
 
 const App = () => {
+
   return (
     <main>
       <h1>Yeti Crab Mortgage Calculator</h1>
       <div>
         <input
+          id='loanAmmount'
           type='number'
           name='loanAmt'
           placeholder='Loan Amount'
@@ -18,7 +17,7 @@ const App = () => {
       </div>
       <br></br>
       <div>
-        <select name='loanTerm' value='' onChange=''>
+        <select name='loanTerm' id='loanTerm'>
           <option value=''>Select Loan Term</option>
           <option value='15'>15 Years</option>
           <option value='20'>20 Years</option>
@@ -27,7 +26,12 @@ const App = () => {
       </div>
       <br></br>
       <div>
-        <input type='number' name='interestRate' placeholder='Interest Rate'></input>
+        <input
+          type='number'
+          name='interestRate'
+          placeholder='Interest Rate'
+          id='interestRate'
+        ></input>
       </div>
       <br></br>
       <div>
@@ -35,10 +39,14 @@ const App = () => {
           type='number'
           name='homeInsurance'
           placeholder='Home Insurance'
+          id='homeInsurance'
         ></input>
       </div>
       <br></br>
-      <button type="submit" className='button' onSubmit={handleSubmit}> Submit </button>
+      <button type='submit' className='button' onClick={handleSubmit}>
+        {' '}
+        Submit{' '}
+      </button>
     </main>
   );
 };
