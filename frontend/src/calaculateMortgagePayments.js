@@ -31,4 +31,4 @@ function calaculateMortgagePayments(
 
 calaculateMortgagePayments(300000, 4, 30);
 
-export default calaculateMortgagePayments;
+//export default calaculateMortgagePayments;
