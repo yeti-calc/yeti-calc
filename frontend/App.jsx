@@ -1,32 +1,44 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import calaculateMortgagePayments from './src/calaculateMortgagePayments'
-
-
+import calaculateMortgagePayments from './src/calaculateMortgagePayments';
 
 const App = () => {
-  const handleSubmit = (e) =>{
-    console.log(calaculateMortgagePayments);
+  const handleSubmit = async (e) => {
+    // get the user's values
+    let loan_amount = Number(document.querySelector('#loanAmmount').value);
+    //console.log(loan_amount)
 
-    let loanAmount = document.querySelector('#loanAmmount').value 
-    console.log(loanAmount)
-  
-    let loanTerm = document.querySelector('#loanTerm').value
-    console.log(loanTerm)
-  
-    let interestRate = document.querySelector('#interestRate').value
-    console.log(interestRate)
-  
-    let homeInsurance = document.querySelector('#homeInsurance').value
-    console.log(homeInsurance)
-  
-    let array = calaculateMortgagePayments(loanAmount, interestRate, loanTerm);
-  
-    console.log(array);
-  
+    let loan_term = Number(document.querySelector('#loanTerm').value);
+    //console.log(loan_term)
+
+    let interest =  Number(document.querySelector('#interestRate').value);
+    //console.log(interest)
+
+    let home_insurance = Number(document.querySelector('#homeInsurance').value);
+    //console.log(home_insurance)
+
+    //send user data to be saved in database
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+
+      const promise = await fetch('/api/savevalues', {
+        method: 'POST',
+        body: JSON.stringify({ loan_amount, loan_term, interest }),
+        headers: myHeaders
+      });
+      const data = await response.json();
+      console.log('data returned: ', data);
+    } catch (error) {
+      console.log('Error in handleSubmit function in the App.jsx', error);
+    }
+
+    // invoke the formula
+    let array = calaculateMortgagePayments(loan_amount, interest, loan_term);
+    //console.log(array);
+
     return;
-    
-  }
+  };
 
   return (
     <main>
@@ -50,7 +62,12 @@ const App = () => {
       </div>
       <br></br>
       <div>
-        <input type='number' name='interestRate' placeholder='Interest Rate' id='interestRate'></input>
+        <input
+          type='number'
+          name='interestRate'
+          placeholder='Interest Rate'
+          id='interestRate'
+        ></input>
       </div>
       <br></br>
       <div>
@@ -62,7 +79,10 @@ const App = () => {
         ></input>
       </div>
       <br></br>
-      <button type="submit" className='button' onClick={handleSubmit} > Submit </button>
+      <button type='submit' className='button' onClick={handleSubmit}>
+        {' '}
+        Submit{' '}
+      </button>
     </main>
   );
 };
