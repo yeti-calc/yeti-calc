@@ -1,16 +1,39 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import calaculateMortgagePayments from './src/calaculateMortgagePayments'
 
-const handleSubmit = (e) =>{
-  
-}
+
 
 const App = () => {
+  const handleSubmit = (e) =>{
+    console.log(calaculateMortgagePayments);
+
+    let loanAmount = document.querySelector('#loanAmmount').value 
+    console.log(loanAmount)
+  
+    let loanTerm = document.querySelector('#loanTerm').value
+    console.log(loanTerm)
+  
+    let interestRate = document.querySelector('#interestRate').value
+    console.log(interestRate)
+  
+    let homeInsurance = document.querySelector('#homeInsurance').value
+    console.log(homeInsurance)
+  
+    let array = calaculateMortgagePayments(loanAmount, interestRate, loanTerm);
+  
+    console.log(array);
+  
+    return;
+    
+  }
+
   return (
     <main>
       <h1>Yeti Crab Mortgage Calculator</h1>
       <div>
         <input
+          id='loanAmmount'
           type='number'
           name='loanAmt'
           placeholder='Loan Amount'
@@ -18,7 +41,7 @@ const App = () => {
       </div>
       <br></br>
       <div>
-        <select name='loanTerm' value='' onChange=''>
+        <select name='loanTerm' id='loanTerm'>
           <option value=''>Select Loan Term</option>
           <option value='15'>15 Years</option>
           <option value='20'>20 Years</option>
@@ -27,7 +50,7 @@ const App = () => {
       </div>
       <br></br>
       <div>
-        <input type='number' name='interestRate' placeholder='Interest Rate'></input>
+        <input type='number' name='interestRate' placeholder='Interest Rate' id='interestRate'></input>
       </div>
       <br></br>
       <div>
@@ -35,10 +58,11 @@ const App = () => {
           type='number'
           name='homeInsurance'
           placeholder='Home Insurance'
+          id='homeInsurance'
         ></input>
       </div>
       <br></br>
-      <button type="submit" className='button' onSubmit={handleSubmit}> Submit </button>
+      <button type="submit" className='button' onClick={handleSubmit} > Submit </button>
     </main>
   );
 };

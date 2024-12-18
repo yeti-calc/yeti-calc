@@ -5,6 +5,8 @@ function calaculateMortgagePayments(
   annualInterestRate,
   loanTermYears
 ) {
+  const amortization = [];
+
   const monthlyInterestRate = annualInterestRate / 12 / 100; //I
   const totalPayments = loanTermYears * 12;
 
@@ -20,6 +22,12 @@ function calaculateMortgagePayments(
     const interestPayment = remainingBalance * monthlyInterestRate; // Interest portion
     const principalPayment = monthlyPayment - interestPayment; // Principal portion
     remainingBalance -= principalPayment;
+    amortization.push({
+      interestPayment: interestPayment.toFixed(2),
+      principalPayment: principalPayment.toFixed(2),
+      remainingBalance: remainingBalance.toFixed(2),
+      month,
+    });
   }
 
   console.log(`Loan Amount: $${loanAmount}`);
@@ -27,8 +35,11 @@ function calaculateMortgagePayments(
   console.log(`Loan Term: ${loanTermYears} years`);
   console.log(`Monthly Payment(PI): $${monthlyPayment.toFixed(2)}`);
   console.log(remainingBalance.toFixed(2));
+
+  return amortization;
 }
 
-calaculateMortgagePayments(300000, 4, 30);
+//const array = calaculateMortgagePayments(300000, 4, 30);
+//console.log(array)
 
 export default calaculateMortgagePayments;
