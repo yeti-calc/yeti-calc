@@ -2,50 +2,59 @@ const bcrypt = require('bcrypt');
 const db = require('./modals.js');
 const saltRounds = 5;
 
-
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
-  const { username, password } = req.body;
-  let { id } = req.body;
-  console.log('controller', username, password);
+  const { name, username, password } = req.body;
+
+  //console.log('controller', name, username, password);
   let hashpassword;
 
-    if (!id) {
-        id = 1;
-    }
+  const newLoginName = `SELECT MAX(id) FROM people`;
 
-  bcrypt.hash(password, saltRounds, function(err, hash) {
-    console.log(hash);
-    hashpassword = hash
-});
+  const loginnameId = await db.query(newLoginName);
 
-const newloginId = `SELECT MAX(id) FROM login`;
+  //console.log(loginnameId);
 
-const loginId = await db.query(newloginId);
+  const loginkeyname = Number(loginnameId.rows[0].max) + 1;
 
-console.log(loginId)
+  let queryname = `INSERT into people
+VALUES ($1, $2)`;
 
-const loginkey = Number(loginId.rows[0].max) + 1;
-console.log(loginId) // expected 3
+  let nameArray = [loginkeyname, name];
 
-let array = [loginkey, username, hashpassword, id]
+  db.query(queryname, nameArray);
 
-let query = `INSERT into login
-VALUES ($1 ,$2, $3, $4)`
+  bcrypt.hash(password, saltRounds, function (err, hash) {
+    //console.log(hash);
+    hashpassword = hash;
+  });
 
-await db.query(query, array);
+  const newloginId = `SELECT MAX(id) FROM login`;
+
+  const loginId = await db.query(newloginId);
+
+  //console.log(loginId);
+
+  const loginkey = Number(loginId.rows[0].max) + 1;
+  //console.log(loginId); // expected 3
+
+  let array = [loginkey, username, hashpassword, loginkeyname];
+
+  let query = `INSERT into login
+VALUES ($1 ,$2, $3, $4)`;
+
+  await db.query(query, array);
 
   next();
 };
 
-// userController.createUser = async () => {
 
-// }
+userController.getUser = async (req, res, next) => {
+  const { username, password } = req.body;
+
+}
 
 module.exports = userController;
-
-
-
 
 //

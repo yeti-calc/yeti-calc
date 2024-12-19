@@ -40,6 +40,7 @@ h3 {
   background-repeat: no-repeat;
 }
 
+.userIdlogin,
 .userlogin,
 .passlogin {
   margin: auto;
@@ -48,3 +49,11 @@ h3 {
 .passlogin {
   margin-top: -30vh;
 }
+
+.userlogin {
+  margin-top: -30vh;
+}
+
+/* .userIdlogin {
+  margin-left: -1vw;
+} */
