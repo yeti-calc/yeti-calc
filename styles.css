@@ -15,8 +15,12 @@ h3 {
   display: flex;
 }
 
-.pageContianer {
+.pageContainer {
   display: grid;
+}
+
+.titleContainer {
+  grid-column: 1;
 }
 
 .loginContainer {
@@ -27,14 +31,13 @@ h3 {
   flex-direction: column;
 }
 
-.mortgageImage {
+.mortgageContainer {
   grid-column: 2;
   width: 50vw;
   margin-top: -20vh;
   background-image: url(./assets/mgbg.jpg);
-}
-.titleContainer {
-  grid-column: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .userlogin,
@@ -42,14 +45,6 @@ h3 {
   margin: auto;
 }
 
-.userlogin {
-  /* margin-top: -10px; */
-}
-
 .passlogin {
   margin-top: -30vh;
-}
-
-#username,
-#password {
 }

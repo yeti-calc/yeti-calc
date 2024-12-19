@@ -1,5 +1,7 @@
 const express = require('express');
 const db = require('./modals.js');
+const userController = require('./userController.js');
+
 
 const router = express.Router();
 
@@ -82,5 +84,18 @@ WHERE id = $4;`;
 
   res.status(200).json({ hi: 'updated Mortgage' });
 });
+
+router.post('/saveuser', userController.createUser, (req, res) => {
+
+
+  res.status(200).json({ hi: 'saved user' });
+});
+
+
+// router.post('/getuser', userController.getUser, (req, res) => {
+
+
+//   res.status(200).json({ hi: 'got user' });
+// })
 
 module.exports = router;
