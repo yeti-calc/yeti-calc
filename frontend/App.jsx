@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { useState } from 'react';
 import Login from './src/Login.jsx';
 import Calculator from './Calculator.jsx';
+//import RenderSched from 'frontend/RenderSched.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
 
