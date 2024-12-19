@@ -23,7 +23,8 @@ const Calculator = () => {
   };
 
   return (
-    <main>
+    <main id='main'>
+      <div className='one'>
       <h1>Yeti Crab Mortgage Calculator</h1>
       <div className='input-container'>
         <input
@@ -65,7 +66,9 @@ const Calculator = () => {
         {' '}
         Submit{' '}
       </button>
-      <RenderSched schedule={data} />
+      </div>
+      <div className='two'> <RenderSched schedule={data} /></div>
+     
     </main>
   );
 };

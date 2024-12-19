@@ -1,38 +1,108 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Login from './src/Login.jsx';
 import Calculator from './Calculator.jsx';
 //import RenderSched from 'frontend/RenderSched.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
+import SignIn from './SignIn.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
   // const counter = useSelector(state => state.counter);
   const { mortgageInputs, savedCalculations } = useSelector(state => state.mortgage);
 
-  const [login, setLogin] = useState(false);
+  const [page, setPage] = useState(1);
 
-  const loginfunc = () => {
-    setLogin((pastState) => !pastState);
-    //console.log(login);
+  const loginfunc = (num) => {
+    setPage(num);
+    console.log(page);
   };
 
-  if (!login) {
+  if (page === 1) {
     return (
       <div>
-        <button onClick={loginfunc}>Go To Login </button>
+        <button
+          onClick={() => {
+            loginfunc(1);
+          }}
+        >
+          Back to Homepage{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(2);
+          }}
+        >
+          Sign Up{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(3);
+          }}
+        >
+          Sign In!
+        </button>
         <Calculator />
       </div>
     );
-  } else {
+  } else if (page === 2) {
     return (
       <div>
-        <button onClick={loginfunc}>Back to Homepage </button>
+        <button
+          onClick={() => {
+            loginfunc(1);
+          }}
+        >
+          Back to Homepage{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(2);
+          }}
+        >
+          Sign Up{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(3);
+          }}
+        >
+          Sign In!
+        </button>
         <Login />
       </div>
     );
+  } else if (page === 3) {
+    return (
+      <div>
+        <button
+          onClick={() => {
+            loginfunc(1);
+          }}
+        >
+          Back to Homepage{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(2);
+          }}
+        >
+          Sign Up{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(3);
+          }}
+        >
+          Sign In!
+        </button>
+        <SignIn />
+      </div>
+    );
+  } else {
+    return <h1>An Error Happened!</h1>;
   }
 };
 

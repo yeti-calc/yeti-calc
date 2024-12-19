@@ -1,28 +1,32 @@
 import React from 'react';
 
-const Login = () => {
-  const newUserEntry = async () => {
-    // users input name
-    const name = document.querySelector('#userid').value;
-
+const SignIn = () => {
+  const checkUser = async () => {
     // users input username
-    const username = document.querySelector('#username').value;
+    const username = document.querySelector('#userid').value;
 
     // user input password
-    const password = document.querySelector('#password').value;
-    //console.log(name, username, password);
+    const password = document.querySelector('#userpass').value;
+    console.log(username, password);
 
     try {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
 
-      const promise = await fetch('/api/saveuser', {
+      const promise = await fetch('/api/checkuser', {
         method: 'POST',
-        body: JSON.stringify({ name, username, password }),
+        body: JSON.stringify({ username, password }),
         headers: myHeaders,
       });
       const data = await promise.json();
       console.log('data returned: ', data);
+
+      if (data.result === true) {
+        document.querySelector('#correct').style.visibility = 'visible'
+      } else if (data.result === false){
+        document.querySelector('#incorrect').style.visibility = 'visible'
+      }
+
     } catch (error) {
       console.log('Error in newUserEntry function in the App.jsx', error);
     }
@@ -39,33 +43,29 @@ const Login = () => {
         <h2>Create An Account</h2>
 
         <div className='userIdlogin'>
-          <label htmlFor='userid'>Enter Your Name:</label>
+          <label htmlFor='userid'>Enter Your Username:</label>
           <br></br>
-          <input id='userid' name='userid' placeholder='Ex: Full Name '></input>
+          <input id='userid' name='userid' placeholder='Ex: UserName '></input>
         </div>
         <div className='userlogin'>
-          <label htmlFor='username'>Enter Your New Username:</label>
+          <label htmlFor='userpass'>Enter Your Password:</label>
           <br></br>
           <input
-            id='username'
+            id='userpass'
             name='username'
-            placeholder="Ex: 'Jayson123'/'Goku' "
+            type='password'
+            placeholder='Ex: Password '
           ></input>
         </div>
         <div className='passlogin'>
-          <label htmlFor='password'>Enter Your New Password:</label>
           <br></br>
-          <input
-            id='password'
-            name='password'
-            placeholder='Numbers & Characters'
-          ></input>
-          <br></br>
-          <button className='userSubmit' onClick={newUserEntry}>
+          <button className='userSubmit' onClick={checkUser}>
             {' '}
-            Become a new User
+            Log In
           </button>
         </div>
+        <p id='correct' style={{visibility: 'hidden', color: 'green'}}>Successful</p>
+        <p id='incorrect' style={{visibility: 'hidden', color: 'red'}}>Unsuccessful</p>
       </div>
       <div className='mortgageContainer'>
         <div className='mortgageImage'></div>
@@ -74,4 +74,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

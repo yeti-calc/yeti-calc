@@ -2,7 +2,6 @@ const express = require('express');
 const db = require('./modals.js');
 const userController = require('./userController.js');
 
-
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -86,14 +85,12 @@ WHERE id = $4;`;
 });
 
 router.post('/saveuser', userController.createUser, (req, res) => {
-
-
   res.status(200).json({ hi: 'saved user' });
 });
 
-
-// router.post('/getuser', userController.getUser, (req, res) => {
-
+router.post('/checkuser', userController.getUser, (req, res) => {
+  res.status(200).json({ hi: 'got user' });
+});
 
 //   res.status(200).json({ hi: 'got user' });
 // })
