@@ -40,7 +40,7 @@ export const handleDelete = (dispatch) => (id) => {
     dispatch(deleteCalc(id));
 };
 
-
+//test
 // document
 // .getElementsByClassName('button')
 // .addEventListener("click", function () {
