@@ -25,7 +25,7 @@ const Calculator = () => {
   return (
     <main>
       <h1>Yeti Crab Mortgage Calculator</h1>
-      <div>
+      <div className='input-container'>
         <input
           id='loanAmmount'
           type='number'
@@ -34,7 +34,7 @@ const Calculator = () => {
         ></input>
       </div>
       <br></br>
-      <div>
+      <div className='input-container'>
         <select name='loanTerm' id='loanTerm'>
           <option value=''>Select Loan Term</option>
           <option value='15'>15 Years</option>
@@ -43,7 +43,7 @@ const Calculator = () => {
         </select>
       </div>
       <br></br>
-      <div>
+      <div className='input-container'>
         <input
           type='number'
           name='interestRate'
@@ -52,7 +52,7 @@ const Calculator = () => {
         ></input>
       </div>
       <br></br>
-      <div>
+      <div className='input-container'>
         <input
           type='number'
           name='homeInsurance'

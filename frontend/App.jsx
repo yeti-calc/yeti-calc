@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const counter = useSelector(state => state.counter);
-  // const { mortgageInputs } = useSelector(state => state.mortgage);
+  const { mortgageInputs, savedCalculations } = useSelector(state => state.mortgage);
 
   const [login, setLogin] = useState(false);
 
