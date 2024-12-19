@@ -39,12 +39,12 @@ const Login = () => {
         <h2>Create An Account</h2>
 
         <div className='userIdlogin'>
-          <label htmlFor='userid'>Enter Your New Name</label>
+          <label htmlFor='userid'>Enter Your Name:</label>
           <br></br>
           <input id='userid' name='userid' placeholder='Ex: Full Name '></input>
         </div>
         <div className='userlogin'>
-          <label htmlFor='username'>Enter Your New Username</label>
+          <label htmlFor='username'>Enter Your New Username:</label>
           <br></br>
           <input
             id='username'
@@ -53,7 +53,7 @@ const Login = () => {
           ></input>
         </div>
         <div className='passlogin'>
-          <label htmlFor='password'>Enter Your New Password</label>
+          <label htmlFor='password'>Enter Your New Password:</label>
           <br></br>
           <input
             id='password'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import handleSubmit from '../backend/request';
-import Monthlypay from './Monthlypay.jsx';
+import RenderSched from './RenderSched.jsx';
 
 const Calculator = () => {
   const [data, setData] = useState([]);
@@ -12,9 +12,9 @@ const Calculator = () => {
     //console.log('data:', data)
 
     setData((data) => {
-      let array = [...data];
-      array.push(amortization);
-      return array;
+      // let array = [...data];
+      // array.push(amortization);
+      return amortization;
     });
 
     //console.log("newdata: ", data)
@@ -23,9 +23,10 @@ const Calculator = () => {
   };
 
   return (
-    <main>
+    <main id='main'>
+      <div className='one'>
       <h1>Yeti Crab Mortgage Calculator</h1>
-      <div>
+      <div className='input-container'>
         <input
           id='loanAmmount'
           type='number'
@@ -34,7 +35,7 @@ const Calculator = () => {
         ></input>
       </div>
       <br></br>
-      <div>
+      <div className='input-container'>
         <select name='loanTerm' id='loanTerm'>
           <option value=''>Select Loan Term</option>
           <option value='15'>15 Years</option>
@@ -43,7 +44,7 @@ const Calculator = () => {
         </select>
       </div>
       <br></br>
-      <div>
+      <div className='input-container'>
         <input
           type='number'
           name='interestRate'
@@ -52,7 +53,7 @@ const Calculator = () => {
         ></input>
       </div>
       <br></br>
-      <div>
+      <div className='input-container'>
         <input
           type='number'
           name='homeInsurance'
@@ -65,7 +66,9 @@ const Calculator = () => {
         {' '}
         Submit{' '}
       </button>
-      <Monthlypay props={data} />
+      </div>
+      <div className='two'> <RenderSched schedule={data} /></div>
+     
     </main>
   );
 };

@@ -3,14 +3,15 @@ import { Provider } from 'react-redux';
 import { useState, useEffect } from 'react';
 import Login from './src/Login.jsx';
 import Calculator from './Calculator.jsx';
-import SignIn from './SignIn.jsx';
+//import RenderSched from 'frontend/RenderSched.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
+import SignIn from './SignIn.jsx';
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const counter = useSelector(state => state.counter);
-  // const { mortgageInputs } = useSelector(state => state.mortgage);
+  const { mortgageInputs, savedCalculations } = useSelector(state => state.mortgage);
 
   const [page, setPage] = useState(1);
 
