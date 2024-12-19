@@ -39,7 +39,6 @@ function calaculateMortgagePayments(
   return amortization;
 }
 
-const array = calaculateMortgagePayments(300000, 4, 30);
-console.log(array);
+calaculateMortgagePayments(300000, 4, 30);
 
-//export default calaculateMortgagePayments;
+export default calaculateMortgagePayments;
