@@ -1,54 +1,32 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import handleSubmit from '../backend/request';
+import { useState } from 'react';
+import Login from './src/Login.jsx';
+import Calculator from './Calculator.jsx';
 
 const App = () => {
+  const [login, setLogin] = useState(false);
 
-  return (
-    <main>
-      <h1>Yeti Crab Mortgage Calculator</h1>
+  const loginfunc = () => {
+    setLogin((pastState) => !pastState);
+    //console.log(login);
+  };
+
+  if (!login) {
+    return (
       <div>
-        <input
-          id='loanAmmount'
-          type='number'
-          name='loanAmt'
-          placeholder='Loan Amount'
-        ></input>
+        <button onClick={loginfunc}>Go To Login </button>
+        <Calculator />
       </div>
-      <br></br>
+    );
+  } else {
+    return (
       <div>
-        <select name='loanTerm' id='loanTerm'>
-          <option value=''>Select Loan Term</option>
-          <option value='15'>15 Years</option>
-          <option value='20'>20 Years</option>
-          <option value='30'>30 Years</option>
-        </select>
+        <button onClick={loginfunc}>Back to Homepage </button>
+        <Login />
       </div>
-      <br></br>
-      <div>
-        <input
-          type='number'
-          name='interestRate'
-          placeholder='Interest Rate'
-          id='interestRate'
-        ></input>
-      </div>
-      <br></br>
-      <div>
-        <input
-          type='number'
-          name='homeInsurance'
-          placeholder='Home Insurance'
-          id='homeInsurance'
-        ></input>
-      </div>
-      <br></br>
-      <button type='submit' className='button' onClick={handleSubmit}>
-        {' '}
-        Submit{' '}
-      </button>
-    </main>
-  );
+    );
+  }
 };
 
 // ! 'npm install @reduxjs/toolkit react-redux' installs redux toolkit
