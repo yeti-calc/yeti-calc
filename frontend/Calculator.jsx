@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import handleSubmit from '../backend/request';
-import Monthlypay from './Monthlypay.jsx';
+import RenderSched from './RenderSched.jsx';
 
 const Calculator = () => {
   const [data, setData] = useState([]);
@@ -12,9 +12,9 @@ const Calculator = () => {
     //console.log('data:', data)
 
     setData((data) => {
-      let array = [...data];
-      array.push(amortization);
-      return array;
+      // let array = [...data];
+      // array.push(amortization);
+      return amortization;
     });
 
     //console.log("newdata: ", data)
@@ -65,7 +65,7 @@ const Calculator = () => {
         {' '}
         Submit{' '}
       </button>
-      <Monthlypay props={data} />
+      <RenderSched schedule={data} />
     </main>
   );
 };
