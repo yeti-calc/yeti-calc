@@ -3,8 +3,14 @@ import { Provider } from 'react-redux';
 import { useState } from 'react';
 import Login from './src/Login.jsx';
 import Calculator from './Calculator.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
 
 const App = () => {
+  // const dispatch = useDispatch();
+  //const counter = useSelector(state => state.counter);
+  // const { mortgageInputs } = useSelector(state => state.mortgage);
+
   const [login, setLogin] = useState(false);
 
   const loginfunc = () => {

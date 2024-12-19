@@ -14,6 +14,13 @@ const mortgageSlice = createSlice({
     name: 'mortgage',
     initialState,
     reducers: {
+        // ~ Save user inputs
+        saveFormInputs(state, action) {
+            state.mortgageInputs = {
+                ...state.mortgageInputs, //spread operator saves input values
+                ...action.payload // spread new values from dispatch into state
+            };
+        },
         // ~ Save new mortgage calculation
         saveCalc(state, action) {
             const newCalculation = {
@@ -46,10 +53,10 @@ const mortgageSlice = createSlice({
 });
 
 export const {
-    saveCalculation,
-    loadCalculation,
-    updateCalculation,
-    deleteCalculation
+    saveFormInputs,
+    saveCalc,
+    updateCalc,
+    deleteCalc
 } = mortgageSlice.actions;
 
 export default mortgageSlice.reducer;
