@@ -6,7 +6,7 @@ const path = require('path');
 After that apply all the rules in module.rules and produce the output and place it in main.js in the public folder.*/
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './frontend/src/index.js',
   output: {
     filename: 'bundle.js',
@@ -49,8 +49,18 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      }
     ],
   },
+  // disable Warnings
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+}
   // port: '9500',
   // static:
 };
