@@ -5,12 +5,12 @@ const saltRounds = 5;
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
-  const { name, username, password } = req.body;
+  const { name, username, password } = req.body; // destructures client's login info when inputted
 
 
   /* 
 
-  Check to make sure username is unique 
+  Check to make sure username is unique --STRETCH GOAL
   
   */
 
@@ -18,18 +18,18 @@ userController.createUser = async (req, res, next) => {
   //console.log('controller', name, username, password);
   let hashpassword;
 
-  const newLoginName = `SELECT MAX(id) FROM people`;
+  const newLoginName = `SELECT MAX(id) FROM people`; // selects highest id # in db
 
   const loginnameId = await db.query(newLoginName);
 
   //console.log(loginnameId);
 
-  const loginkeyname = Number(loginnameId.rows[0].max) + 1;
+  const loginkeyname = Number(loginnameId.rows[0].max) + 1; // selecting latest id and adding a 1 to make it a new id
 
-  let queryname = `INSERT into people
-VALUES ($1, $2)`;
+  let queryname = `INSERT into people 
+VALUES ($1, $2)`; // adds into people table
 
-  let nameArray = [loginkeyname, name];
+  let nameArray = [loginkeyname, name]; // userid, and their name -- params in the modals
 
   db.query(queryname, nameArray);
 
@@ -40,7 +40,7 @@ VALUES ($1, $2)`;
 
   const newloginId = `SELECT MAX(id) FROM login`;
 
-  const loginId = await db.query(newloginId);
+  const loginId = await db.query(newloginId); // same thing, but for the login table (whereas before was for people's table)
 
   //console.log(loginId);
 
@@ -74,10 +74,10 @@ userController.getUser = async (req, res, next) => {
 
   /*
     if the username isn't found return response 404
-    success and unsuccess dissapper
     cookie settime
   */
 
+// disappearing text when pw entry is successful (or not)
   bcrypt.compare(password, results.rows[0].password, function(err, result) { // param2 is hashed pw inside returning array
     console.log(result)
 

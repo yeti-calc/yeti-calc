@@ -1,3 +1,5 @@
+// REDUX code that eventually was left unfinished and unused
+
 import calculateMortgagePayments from './calaculateMortgagePayments';
 import {
     saveFormInputs,
