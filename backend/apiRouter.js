@@ -1,6 +1,6 @@
 const express = require('express');
-const db = require('./modals.js');
-const userController = require('./userController.js');
+const db = require('./modals.js'); // SQL file
+const userController = require('./userController.js'); // controller file with business logic of routers
 
 const router = express.Router();
 
@@ -30,8 +30,8 @@ router.post('/savevalues', async (req, res) => {
 
   const id = Number(mortgagesId.rows[0].max) + 1;
 
-  const INSERTpeople = `INSERT into mortgages
-                      values ($1, $2, $3, $4, $5, $6)`;
+  const INSERTpeople = `INSERT into mortgages 
+                      values ($1, $2, $3, $4, $5, $6)`;// db queries into SQL
   const array = [id, loan_term, loan_amount, null, person, interest];
 
   await db.query(INSERTpeople, array);

@@ -7,10 +7,10 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // any frontend JSON responses or URL encoded string gets converted into something JS can read
 
 
-app.use(express.static(path.resolve(__dirname, '../frontend')));
+app.use(express.static(path.resolve(__dirname, '../frontend'))); // any req to frontend will be displayed on browser bc of this
 
 /**
  * define route handlers
@@ -20,7 +20,7 @@ app.use('/api', apiRouter);
 // catch-all
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
-
+// error handling needs to be finished
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',

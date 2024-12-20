@@ -23,7 +23,7 @@ module.exports = {
     proxy: [
       {
         context: ['/api'],
-        target: 'http://localhost:3000',
+        target: 'http://localhost:3000', // gets sent to localhost 8080
       },
     ],
     static: {
@@ -58,7 +58,7 @@ module.exports = {
   // disable Warnings
   performance: {
     hints: false,
-    maxEntrypointSize: 512000,
+    maxEntrypointSize: 512000, // disables yellow error messages that come as a result of webpack, not error specifying issues with code
     maxAssetSize: 512000
 }
   // port: '9500',

@@ -1,19 +1,20 @@
 import React from 'react';
 
 const SignIn = () => {
-  const checkUser = async () => {
+  const checkUser = async () => { // onCLick that confirms UN and PW is valid
+
     // users input username
     const username = document.querySelector('#userid').value;
 
     // user input password
     const password = document.querySelector('#userpass').value;
-    console.log(username, password);
+    //console.log(username, password);
 
     try {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
 
-      const promise = await fetch('/api/checkuser', {
+      const promise = await fetch('/api/checkuser', { // pasing UN and PW inputted by client to server and db here
         method: 'POST',
         body: JSON.stringify({ username, password }),
         headers: myHeaders,
@@ -21,10 +22,19 @@ const SignIn = () => {
       const data = await promise.json();
       console.log('data returned: ', data);
 
-      if (data.result === true) {
+      if (data.result === true) { // success/failure text prompt with timeOuts
         document.querySelector('#correct').style.visibility = 'visible'
+
+        setTimeout(() => {
+          document.querySelector('#correct').style.visibility = 'hidden'
+       }, 2000)
+
       } else if (data.result === false){
         document.querySelector('#incorrect').style.visibility = 'visible'
+
+        setTimeout(() => {
+          document.querySelector('#incorrect').style.visibility = 'hidden'
+       }, 2000)
       }
 
     } catch (error) {

@@ -7,14 +7,14 @@ const Calculator = () => {
   const [data, setData] = useState([]);
 
   const Principle = async () => {
-    const promise = await handleSubmit();
-    let amortization = await promise;
+    const promise = await handleSubmit(); // handleSubmit returns amortization array, request to diff file returns a promise (data would contain amortization array)
+    let amortization = await promise; // transfers res data into var labelled amortization in this file
     //console.log('data:', data)
 
-    setData((data) => {
+    setData((data) => { // saves + updates amortization table to current state
       // let array = [...data];
       // array.push(amortization);
-      return amortization;
+      return amortization; // returns array of obj
     });
 
     //console.log("newdata: ", data)
@@ -67,10 +67,12 @@ const Calculator = () => {
         Submit{' '}
       </button>
       </div>
-      <div className='two'> <RenderSched schedule={data} /></div>
+      <div className='two'> <RenderSched schedule={data} /></div> 
      
     </main>
   );
 };
+
+// {data} coming from useState here, set to var schedule, passed as a prop to RenderSched
 
 export default Calculator;

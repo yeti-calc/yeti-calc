@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Login = () => {
-  const newUserEntry = async () => {
+  const newUserEntry = async () => { // event listener that listens for inputted data from client
     // users input name
     const name = document.querySelector('#userid').value;
 
@@ -19,7 +19,7 @@ const Login = () => {
       const promise = await fetch('/api/saveuser', {
         method: 'POST',
         body: JSON.stringify({ name, username, password }),
-        headers: myHeaders,
+        headers: myHeaders, // sends into as JSON to server and then db
       });
       const data = await promise.json();
       console.log('data returned: ', data);
@@ -61,7 +61,7 @@ const Login = () => {
             placeholder='Numbers & Characters'
           ></input>
           <br></br>
-          <button className='userSubmit' onClick={newUserEntry}>
+          <button className='userSubmit' onClick={newUserEntry}> 
             {' '}
             Become a new User
           </button>

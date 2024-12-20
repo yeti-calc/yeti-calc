@@ -9,18 +9,18 @@ import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
 import SignIn from './SignIn.jsx';
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Redux code that isn't used
   // const counter = useSelector(state => state.counter);
-  const { mortgageInputs, savedCalculations } = useSelector(state => state.mortgage);
+  const { mortgageInputs, savedCalculations } = useSelector(state => state.mortgage);// Redux code that isn't used
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); // using React useState conditional logic to re-render Sign-Up, Login, and Calculator page
 
   const loginfunc = (num) => {
-    setPage(num);
+    setPage(num); // setter func on line 16
     console.log(page);
   };
 
-  if (page === 1) {
+  if (page === 1) { // if page is set to 1, returns following navbar and Calc page
     return (
       <div>
         <button
@@ -47,7 +47,7 @@ const App = () => {
         <Calculator />
       </div>
     );
-  } else if (page === 2) {
+  } else if (page === 2) { // if page is set to 2, returns following navbar and Login page
     return (
       <div>
         <button
@@ -74,7 +74,7 @@ const App = () => {
         <Login />
       </div>
     );
-  } else if (page === 3) {
+  } else if (page === 3) { // if page is set to 3, returns following navbar and Sign-in page
     return (
       <div>
         <button
@@ -102,7 +102,7 @@ const App = () => {
       </div>
     );
   } else {
-    return <h1>An Error Happened!</h1>;
+    return <h1>An Error Happened!</h1>; // error handler
   }
 };
 
