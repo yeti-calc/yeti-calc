@@ -1,8 +1,6 @@
 const { Pool } = require('pg'); // use destructuring to get the Pool constructor from Postgres package
 
-// .env
-const PG_URI =
-  'postgresql://postgres.cdibcxjbcjmfhtolyxxq:humfa1-fuZtyr-rezkig@aws-0-us-west-1.pooler.supabase.com:6543/postgres'; // supabase URI
+const PG_URI = process.env.PG_URI;
 
 const pool = new Pool({
   connectionString: PG_URI,
