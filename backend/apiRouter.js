@@ -1,5 +1,6 @@
 const express = require('express');
-const db = require('./modals.js');
+const db = require('./modals.js'); // SQL file
+const userController = require('./userController.js'); // controller file with business logic of routers
 
 const router = express.Router();
 
@@ -29,8 +30,8 @@ router.post('/savevalues', async (req, res) => {
 
   const id = Number(mortgagesId.rows[0].max) + 1;
 
-  const INSERTpeople = `INSERT into mortgages
-                      values ($1, $2, $3, $4, $5, $6)`;
+  const INSERTpeople = `INSERT into mortgages 
+                      values ($1, $2, $3, $4, $5, $6)`;// db queries into SQL
   const array = [id, loan_term, loan_amount, null, person, interest];
 
   await db.query(INSERTpeople, array);
@@ -82,5 +83,16 @@ WHERE id = $4;`;
 
   res.status(200).json({ hi: 'updated Mortgage' });
 });
+
+router.post('/saveuser', userController.createUser, (req, res) => {
+  res.status(200).json({ hi: 'saved user' });
+});
+
+router.post('/checkuser', userController.getUser, (req, res) => {
+  res.status(200).json({ hi: 'got user' });
+});
+
+//   res.status(200).json({ hi: 'got user' });
+// })
 
 module.exports = router;

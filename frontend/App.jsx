@@ -1,54 +1,109 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import handleSubmit from '../backend/request';
+import { useState, useEffect } from 'react';
+import Login from './src/Login.jsx';
+import Calculator from './Calculator.jsx';
+//import RenderSched from 'frontend/RenderSched.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleInputChange, handleCalcSubmit } from './src/mortgageActions';
+import SignIn from './SignIn.jsx';
 
 const App = () => {
+  const dispatch = useDispatch(); // Redux code that isn't used
+  // const counter = useSelector(state => state.counter);
+  const { mortgageInputs, savedCalculations } = useSelector(state => state.mortgage);// Redux code that isn't used
 
-  return (
-    <main>
-      <h1>Yeti Crab Mortgage Calculator</h1>
+  const [page, setPage] = useState(1); // using React useState conditional logic to re-render Sign-Up, Login, and Calculator page
+
+  const loginfunc = (num) => {
+    setPage(num); // setter func on line 16
+    console.log(page);
+  };
+
+  if (page === 1) { // if page is set to 1, returns following navbar and Calc page
+    return (
       <div>
-        <input
-          id='loanAmmount'
-          type='number'
-          name='loanAmt'
-          placeholder='Loan Amount'
-        ></input>
+        <button
+          onClick={() => {
+            loginfunc(1);
+          }}
+        >
+          Back to Homepage{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(2);
+          }}
+        >
+          Sign Up{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(3);
+          }}
+        >
+          Sign In!
+        </button>
+        <Calculator />
       </div>
-      <br></br>
+    );
+  } else if (page === 2) { // if page is set to 2, returns following navbar and Login page
+    return (
       <div>
-        <select name='loanTerm' id='loanTerm'>
-          <option value=''>Select Loan Term</option>
-          <option value='15'>15 Years</option>
-          <option value='20'>20 Years</option>
-          <option value='30'>30 Years</option>
-        </select>
+        <button
+          onClick={() => {
+            loginfunc(1);
+          }}
+        >
+          Back to Homepage{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(2);
+          }}
+        >
+          Sign Up{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(3);
+          }}
+        >
+          Sign In!
+        </button>
+        <Login />
       </div>
-      <br></br>
+    );
+  } else if (page === 3) { // if page is set to 3, returns following navbar and Sign-in page
+    return (
       <div>
-        <input
-          type='number'
-          name='interestRate'
-          placeholder='Interest Rate'
-          id='interestRate'
-        ></input>
+        <button
+          onClick={() => {
+            loginfunc(1);
+          }}
+        >
+          Back to Homepage{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(2);
+          }}
+        >
+          Sign Up{' '}
+        </button>
+        <button
+          onClick={() => {
+            loginfunc(3);
+          }}
+        >
+          Sign In!
+        </button>
+        <SignIn />
       </div>
-      <br></br>
-      <div>
-        <input
-          type='number'
-          name='homeInsurance'
-          placeholder='Home Insurance'
-          id='homeInsurance'
-        ></input>
-      </div>
-      <br></br>
-      <button type='submit' className='button' onClick={handleSubmit}>
-        {' '}
-        Submit{' '}
-      </button>
-    </main>
-  );
+    );
+  } else {
+    return <h1>An Error Happened!</h1>; // error handler
+  }
 };
 
 // ! 'npm install @reduxjs/toolkit react-redux' installs redux toolkit

@@ -1,3 +1,5 @@
+// REDUX code that eventually was left unfinished and unused
+
 import { createSlice } from '@reduxjs/toolkit'; //* defines reducers and actions in concise way
 
 const initialState = {
@@ -14,12 +16,19 @@ const mortgageSlice = createSlice({
     name: 'mortgage',
     initialState,
     reducers: {
+        // ~ Save user inputs
+        saveFormInputs(state, action) {
+            state.mortgageInputs = {
+                ...state.mortgageInputs, //spread operator saves input values
+                ...action.payload // spread new values from dispatch into state
+            };
+        },
         // ~ Save new mortgage calculation
         saveCalc(state, action) {
             const newCalculation = {
-                id: Date.now(),
+                id: Date.now(), // id was going to be date + time of entry
                 ...state.mortgageInputs,
-                monthlyPayment: action.payload.monthlyPayment,
+                monthlyPayment: action.payload.monthlyPayment, // RESEARCH: does it require ... before action.payload.
                 date: new Date().toISOString()
             };
           state.savedCalculations.push(newCalculation);
@@ -39,17 +48,17 @@ const mortgageSlice = createSlice({
         deleteCalc(state, action) {
             // const { id } = action.payload
             state.savedCalculations = state.savedCalculations.filter(
-                calc => calc.id !== action.payload
+                calc => calc.id !== action.payload // implicit return, returning everything except for id we're looking for in new reassigned array
             );
         }
     }
 });
 
 export const {
-    saveCalculation,
-    loadCalculation,
-    updateCalculation,
-    deleteCalculation
+    saveFormInputs,
+    saveCalc,
+    updateCalc,
+    deleteCalc
 } = mortgageSlice.actions;
 
 export default mortgageSlice.reducer;
